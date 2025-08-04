@@ -1,0 +1,32 @@
+import styled from 'styled-components'
+import { Outlet } from 'react-router'
+
+import Header from './Header'
+import Sidebar from './Sidebar'
+
+const StyledAppLoyout = styled.div`
+  display: grid;
+  grid-template-columns: 26rem 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100dvh;
+`
+
+const Main = styled.main`
+  background-color: var(--color-grey-50);
+  padding: 4rem 4.8rem 6.4rem;
+`
+
+function AppLayout() {
+  return (
+    <StyledAppLoyout>
+      <Header />
+      <Sidebar />
+
+      <Main>
+        <Outlet />
+      </Main>
+    </StyledAppLoyout>
+  )
+}
+
+export default AppLayout
