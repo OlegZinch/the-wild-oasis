@@ -1,9 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
+import { StyleSheetManager } from 'styled-components'
+import isPropValid from '@emotion/is-prop-valid'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <StyleSheetManager shouldForwardProp={isPropValid}>
+      <App />
+    </StyleSheetManager>
   </StrictMode>
 )
