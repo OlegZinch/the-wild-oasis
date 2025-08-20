@@ -8,15 +8,15 @@ import Textarea from '../../ui/Textarea'
 import FormRow from '../../ui/FormRow'
 
 import { useCreateCabin } from './useCreateCabin'
-import { useEditCabin } from './useEditCabin'
+import { useUpdateCabin } from './useUpdateCabin'
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { isCreating, createCabin } = useCreateCabin()
-  const { isEditing, editCabin } = useEditCabin()
-  const isWorking = isCreating || isEditing
+  const { isUpdating, updateCabin } = useUpdateCabin()
+  const isWorking = isCreating || isUpdating
 
-  const { id: editId, ...editValues } = cabinToEdit
-  const isEditSession = Boolean(editId)
+  const { id: updateId, ...editValues } = cabinToEdit
+  const isUpdateSession = Boolean(updateId)
 
   const {
     register,
@@ -25,15 +25,15 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     reset,
     getValues,
   } = useForm({
-    defaultValues: isEditSession ? editValues : {},
+    defaultValues: isUpdateSession ? editValues : {},
   })
 
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0]
 
-    if (isEditSession) {
-      editCabin(
-        { newCabinData: { ...data, image }, id: editId },
+    if (isUpdateSession) {
+      updateCabin(
+        { newCabinData: { ...data, image }, id: updateId },
         { onSuccess: () => reset() }
       )
     } else {
@@ -123,7 +123,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           id='image'
           accept='image/*'
           {...register('image', {
-            required: isEditSession ? false : 'This field is required',
+            required: isUpdateSession ? false : 'This field is required',
           })}
         />
       </FormRow>
@@ -134,7 +134,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isEditSession ? 'Edit cabin' : 'Create new cabin'}
+          {isUpdateSession ? 'Update cabin' : 'Create new cabin'}
         </Button>
       </FormRow>
     </Form>
