@@ -7,7 +7,7 @@ export async function getBookings() {
     .select(
       'id, created_at, startDate, endDate, numNights, numGuests, totalPrice, status, cabins(name), guests(fullName, email)'
     )
-    .order('created_at', { ascending: true })
+  // .order('created_at', { ascending: true })
 
   if (error) {
     console.error(error)
