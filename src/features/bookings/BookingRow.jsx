@@ -9,7 +9,7 @@ import Menus from '../../ui/Menus'
 
 import { formatCurrency } from '../../utils/helpers'
 import { formatDistanceFromNow } from '../../utils/helpers'
-import { useCheckot } from '../check-in-out/useCheckout'
+import { useCheckout } from '../check-in-out/useCheckout'
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -53,7 +53,7 @@ function BookingRow({
   },
 }) {
   const navigate = useNavigate()
-  const { checkout, isCheckingOut } = useCheckot()
+  const { checkout, isCheckingOut } = useCheckout()
 
   const statusToTagName = {
     unconfirmed: 'blue',

@@ -12,7 +12,7 @@ import Spinner from '../../ui/Spinner'
 
 import { useMoveBack } from '../../hooks/useMoveBack'
 import { useBooking } from './useBooking'
-import { useCheckot } from '../check-in-out/useCheckout'
+import { useCheckout } from '../check-in-out/useCheckout'
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const HeadingGroup = styled.div`
 
 function BookingDetail() {
   const { booking, isPending } = useBooking()
-  const { checkout, isCheckingOut } = useCheckot()
+  const { checkout, isCheckingOut } = useCheckout()
   const moveBack = useMoveBack()
   const navigate = useNavigate()
 
